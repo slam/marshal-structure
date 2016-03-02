@@ -151,7 +151,13 @@ class Marshal::Structure
   def structure
     parser = Marshal::Structure::Parser.new token_stream
 
-    parser.parse
+    begin
+      parser.parse
+    rescue => exception
+      @tokenizer.crash_dump
+      puts exception
+      puts exception.backtrace
+    end
   end
 
   ##

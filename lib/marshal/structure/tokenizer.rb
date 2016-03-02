@@ -179,6 +179,11 @@ class Marshal::Structure::Tokenizer
     @stream.force_encoding Encoding::BINARY
   end
 
+  def crash_dump
+    require 'hexdump'
+    Hexdump.dump(@stream[@consumed-500, 510])
+  end
+
   ##
   # Consumes one byte from the marshal stream
 
